@@ -1,28 +1,32 @@
-import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import Dashboard from './components/Dashboard'
+import Teacher from './components/Teacher'
+import Student from './components/Student'
+import { Navbar, Page, Shell } from './components/UI'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
+  const location = useLocation()
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+    <Page>
+      <Navbar />
+      <div className="pt-4">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
           >
-            Count is {count}
-          </button>
-        </div>
+            <Routes location={location}>
+              <Route path="/" element={<Shell title="Dashboard"><Dashboard/></Shell>} />
+              <Route path="/teacher" element={<Shell title="Teacher View"><Teacher/></Shell>} />
+              <Route path="/student" element={<Shell title="Student View"><Student/></Shell>} />
+            </Routes>
+          </motion.div>
+        </AnimatePresence>
       </div>
-    </div>
+    </Page>
   )
 }
-
-export default App
