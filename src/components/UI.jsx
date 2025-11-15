@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import { Home, BookOpen, FileText, ClipboardList, Users, CalendarDays, Megaphone, Upload, Check, X, Menu, User } from 'lucide-react'
+import { Home, BookOpen, FileText, ClipboardList, Users, CalendarDays, Megaphone, Upload, Check, X, Menu, User, CheckCircle } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
 
-export const Icon = { Home, BookOpen, FileText, ClipboardList, Users, CalendarDays, Megaphone, Upload, Check, X, Menu, User }
+export const Icon = { Home, BookOpen, FileText, ClipboardList, Users, CalendarDays, Megaphone, Upload, Check, X, Menu, User, CheckCircle }
 
 export const Page = ({ children }) => (
   <div className="min-h-screen bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50 text-slate-800">
@@ -30,6 +30,7 @@ export const Navbar = () => {
     { to: '/', label: 'Dashboard', icon: Home },
     { to: '/teacher', label: 'Teacher', icon: Users },
     { to: '/student', label: 'Student', icon: User },
+    { to: '/attendance', label: 'Attendance', icon: CheckCircle },
   ]
   return (
     <div className="sticky top-0 z-40 backdrop-blur-md bg-white/60 border-b border-slate-200/60">
